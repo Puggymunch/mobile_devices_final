@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,12 +18,18 @@ class _AddRecipeState extends State<AddRecipe> {
   final recipes = FirebaseFirestore.instance.collection("recipes");
   var titleController = TextEditingController();
   var ingredientsController = TextEditingController();
+  var instructionsController = TextEditingController();
+  var preptimeController = TextEditingController();
+  var cooktimeController = TextEditingController();
+  var totaltimeController = TextEditingController();
+  var servingsController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create a Recipe!', style: TextStyle(fontSize: 12)),
+        title: Text('Create a Recipe!',
+            style: TextStyle(fontSize: 20, color: Colors.black)),
         backgroundColor: Colors.amber,
       ),
       body: ListView(
@@ -30,13 +37,18 @@ class _AddRecipeState extends State<AddRecipe> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Title:", style: TextStyle(fontSize: 12)),
+              SizedBox(
+                width: 25,
+              ),
+              Text("Title:", style: TextStyle(fontSize: 15)),
               SizedBox(
                 width: 50,
               ),
               Container(
                   width: 250,
-                  child: TextField(
+                  child: TextFormField(
+                      minLines: 1,
+                      maxLines: 20,
                       controller: titleController,
                       decoration: InputDecoration(
                         border: UnderlineInputBorder(),
@@ -44,19 +56,137 @@ class _AddRecipeState extends State<AddRecipe> {
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Add Ingredients:", style: TextStyle(fontSize: 12)),
+              SizedBox(
+                width: 6,
+              ),
+              Text("Ingredients:", style: TextStyle(fontSize: 15)),
               SizedBox(
                 width: 50,
               ),
               Container(
                   width: 250,
                   child: TextField(
+                      minLines: 1,
+                      maxLines: 20,
                       controller: ingredientsController,
                       decoration: InputDecoration(
                         border: UnderlineInputBorder(),
                       ))),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text("Instructions:", style: TextStyle(fontSize: 15)),
+              SizedBox(
+                width: 50,
+              ),
+              Container(
+                  width: 250,
+                  child: TextField(
+                      minLines: 1,
+                      maxLines: 20,
+                      controller: instructionsController,
+                      decoration: InputDecoration(
+                        border: UnderlineInputBorder(),
+                      ))),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Text("Prep Time:", style: TextStyle(fontSize: 15)),
+              SizedBox(
+                width: 50,
+              ),
+              Container(
+                  width: 250,
+                  child: TextField(
+                      controller: preptimeController,
+                      decoration: InputDecoration(
+                        border: UnderlineInputBorder(),
+                      ))),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 7,
+              ),
+              Text("Cook Time:", style: TextStyle(fontSize: 15)),
+              SizedBox(
+                width: 50,
+              ),
+              Container(
+                  width: 250,
+                  child: TextField(
+                      controller: cooktimeController,
+                      decoration: InputDecoration(
+                        border: UnderlineInputBorder(),
+                      ))),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 8,
+              ),
+              Text("Total Time:", style: TextStyle(fontSize: 15)),
+              SizedBox(
+                width: 50,
+              ),
+              Container(
+                  width: 250,
+                  child: TextField(
+                      controller: totaltimeController,
+                      decoration: InputDecoration(
+                        border: UnderlineInputBorder(),
+                      ))),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 20,
+              ),
+              Text("Servings:", style: TextStyle(fontSize: 15)),
+              SizedBox(
+                width: 50,
+              ),
+              Container(
+                  width: 250,
+                  child: TextField(
+                      controller: servingsController,
+                      decoration: InputDecoration(
+                        border: UnderlineInputBorder(),
+                      ))),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 20,
+              ),
+              Text("Photo(s):", style: TextStyle(fontSize: 15)),
+              SizedBox(
+                width: 50,
+              ),
+              Container(
+                  width: 250,
+                  child: TextField(
+                      //controller: ingredientsController,
+                      decoration: InputDecoration(
+                    border: UnderlineInputBorder(),
+                  ))),
             ],
           ),
         ],
