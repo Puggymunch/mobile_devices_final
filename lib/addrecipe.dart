@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:camera/camera.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 
 List<CameraDescription> cameras = [];
 
@@ -23,6 +27,15 @@ class _AddRecipeState extends State<AddRecipe> {
   var cooktimeController = TextEditingController();
   var totaltimeController = TextEditingController();
   var servingsController = TextEditingController();
+  late CameraController _controller;
+  late Future<void> _initializeControllerFuture;
+
+  @override
+  void dispose() {
+    // Dispose of the controller when the widget is disposed.
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -180,13 +193,32 @@ class _AddRecipeState extends State<AddRecipe> {
               SizedBox(
                 width: 50,
               ),
-              Container(
-                  width: 250,
-                  child: TextField(
-                      //controller: ingredientsController,
-                      decoration: InputDecoration(
-                    border: UnderlineInputBorder(),
-                  ))),
+              ElevatedButton(
+                child: Row(children: [
+                  Icon(Icons.camera_alt_outlined, size: 28),
+                  Text("Take Photo")
+                ]),
+                onPressed: () {
+                  setState(() {
+                    _controller = CameraController(
+                        cameras.first, ResolutionPreset.medium);
+                    _initializeControllerFuture = _controller.initialize();
+
+                    FutureBuilder<void>(
+                        future: _initializeControllerFuture,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            return CameraPreview(_controller);
+                          } else {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        });
+                  });
+                },
+              ),
             ],
           ),
         ],
