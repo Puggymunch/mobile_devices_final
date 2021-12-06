@@ -36,6 +36,16 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: any
   image_size_getter:
+  firebase_core:
+  cloud_firestore:
+  camera:
+  path_provider:
+  path:
+  image_picker: ^0.8.1+3
+  firebase_storage: ^10.2.0
+  flutter_map: 
+  geolocator: ^8.0.0
+  geocoding:
 
 dev_dependencies:
   flutter_test:

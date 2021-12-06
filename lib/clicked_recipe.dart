@@ -57,112 +57,125 @@ class _ClickedRecipeState extends State<ClickedRecipe> {
             ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
                 scrollDirection: Axis.vertical,
-                child: Center(
-                    child: Column(
+                child: Stack(
                   children: [
-                    Container(
-                        height: 250,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.fitWidth,
-                                image: NetworkImage(widget.recipe.images)))),
-                    Text(widget.recipe.name,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 35)),
-                    const Divider(
-                        height: 40,
-                        thickness: 2,
-                        indent: 20,
-                        endIndent: 20,
-                        color: Colors.grey),
-                    // const SizedBox(height: 25),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Center(
+                        child: Column(
                       children: [
+                        Container(
+                            height: 250,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    fit: BoxFit.fitWidth,
+                                    image:
+                                        NetworkImage(widget.recipe.images)))),
+                        Text(widget.recipe.name,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 35)),
+                        const Divider(
+                            height: 40,
+                            thickness: 2,
+                            indent: 20,
+                            endIndent: 20,
+                            color: Colors.grey),
+                        // const SizedBox(height: 25),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.access_time_filled_rounded,
+                            Row(
+                              children: [
+                                const Icon(Icons.access_time_filled_rounded,
+                                    color: Colors.white),
+                                const SizedBox(width: 10),
+                                Text(widget.recipe.totalTime,
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 18))
+                              ],
+                            ),
+                            const SizedBox(width: 50),
+                            Row(
+                              children: [
+                                const Icon(Icons.face, color: Colors.white),
+                                const SizedBox(width: 10),
+                                Text('${widget.recipe.numServings}  serving(s)',
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 18))
+                              ],
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 25),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.local_fire_department_rounded,
                                 color: Colors.white),
                             const SizedBox(width: 10),
-                            Text(widget.recipe.totalTime,
+                            Text('${widget.recipe.cals}  calories',
                                 style: const TextStyle(
                                     color: Colors.white, fontSize: 18))
                           ],
                         ),
-                        const SizedBox(width: 50),
-                        Row(
-                          children: [
-                            const Icon(Icons.face, color: Colors.white),
-                            const SizedBox(width: 10),
-                            Text('${widget.recipe.numServings}  serving(s)',
+                        const SizedBox(height: 25),
+                        Container(
+                            padding: const EdgeInsets.only(right: 240),
+                            child: const Text('Description',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                ))),
+                        const SizedBox(height: 10),
+                        Container(
+                            padding: const EdgeInsets.only(left: 15, right: 10),
+                            child: Text(widget.recipe.description,
                                 style: const TextStyle(
-                                    color: Colors.white, fontSize: 18))
-                          ],
-                        )
+                                    color: Colors.white, fontSize: 20))),
+                        const SizedBox(height: 25),
+                        Container(
+                            padding: const EdgeInsets.only(right: 240),
+                            child: const Text('Ingredients',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                ))),
+                        const SizedBox(height: 10),
+                        Container(
+                            padding: const EdgeInsets.only(left: 15, right: 10),
+                            child: Text(widget.recipe.ingredients.toString(),
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 20))),
+                        const SizedBox(height: 25),
+                        Container(
+                            padding: const EdgeInsets.only(right: 260),
+                            child: const Text('Directions',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                ))),
+                        const SizedBox(height: 10),
+                        Container(
+                            padding: const EdgeInsets.only(left: 15, right: 10),
+                            child: Text(widget.recipe.directions.toString(),
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 20))),
                       ],
-                    ),
-                    const SizedBox(height: 25),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.local_fire_department_rounded,
-                            color: Colors.white),
-                        const SizedBox(width: 10),
-                        Text('${widget.recipe.cals}  calories',
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 18))
-                      ],
-                    ),
-                    const SizedBox(height: 25),
-                    Container(
-                        padding: const EdgeInsets.only(right: 240),
-                        child: const Text('Description',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                            ))),
-                    const SizedBox(height: 10),
-                    Container(
-                        padding: const EdgeInsets.only(left: 15, right: 10),
-                        child: Text(widget.recipe.description,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 20))),
-                    const SizedBox(height: 25),
-                    Container(
-                        padding: const EdgeInsets.only(right: 240),
-                        child: const Text('Ingredients',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                            ))),
-                    const SizedBox(height: 10),
-                    Container(
-                        padding: const EdgeInsets.only(left: 15, right: 10),
-                        child: Text(widget.recipe.ingredients.toString(),
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 20))),
-                    const SizedBox(height: 25),
-                    Container(
-                        padding: const EdgeInsets.only(right: 260),
-                        child: const Text('Directions',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                            ))),
-                    const SizedBox(height: 10),
-                    Container(
-                        padding: const EdgeInsets.only(left: 15, right: 10),
-                        child: Text(widget.recipe.directions.toString(),
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 20))),
+                    )),
+                    IconButton(
+                        color: Colors.black,
+                        iconSize: 40,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.arrow_back)),
                   ],
-                ))));
+                ),
+              ));
   }
 }

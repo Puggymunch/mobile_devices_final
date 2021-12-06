@@ -6,8 +6,12 @@ import 'package:http/http.dart';
 import 'recipe.dart';
 import 'search_result.dart';
 import 'clicked_recipe.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

@@ -41,35 +41,47 @@ class _SearchResultState extends State<SearchResult> {
         if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
         }
-        return ListView.separated(
-            separatorBuilder: (BuildContext context, int index) {
-              return const SizedBox(
-                height: 5,
-              );
-            },
-            itemCount: searchRecipes.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            ClickedRecipe(recipe: searchRecipes[index])),
+        return Stack(
+          children: [
+            ListView.separated(
+                separatorBuilder: (BuildContext context, int index) {
+                  return const SizedBox(
+                    height: 5,
                   );
-                  // print(searchRecipes[index]);
                 },
-                title: Text(
-                  searchRecipes[index].name,
-                  style: const TextStyle(color: Colors.white),
-                ),
-                // subtitle: Text("bob"),
-                leading: CircleAvatar(
-                  radius: 40,
-                  backgroundImage: NetworkImage(searchRecipes[index].images),
-                ),
-              );
-            });
+                itemCount: searchRecipes.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ClickedRecipe(recipe: searchRecipes[index])),
+                      );
+                      // print(searchRecipes[index]);
+                    },
+                    title: Text(
+                      searchRecipes[index].name,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    // subtitle: Text("bob"),
+                    leading: CircleAvatar(
+                      radius: 40,
+                      backgroundImage:
+                          NetworkImage(searchRecipes[index].images),
+                    ),
+                  );
+                }),
+            IconButton(
+                color: Colors.black,
+                iconSize: 40,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.arrow_back)),
+          ],
+        );
       },
     ));
   }

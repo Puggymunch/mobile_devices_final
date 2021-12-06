@@ -1,6 +1,9 @@
 import 'package:final_proj/main.dart';
+import 'package:final_proj/userRecipes/stream_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import "package:final_proj/userRecipes/stream_builder.dart";
+import "mapping/map.dart";
 
 class StarterPage extends StatelessWidget {
   const StarterPage({Key? key}) : super(key: key);
@@ -14,6 +17,9 @@ class StarterPage extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.auto_stories),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.map_outlined),
         )
       ]),
       tabBuilder: (context, index) {
@@ -24,7 +30,13 @@ class StarterPage extends StatelessWidget {
             });
           case 1:
             return CupertinoTabView(builder: (context) {
-              return const CupertinoPageScaffold(child: MyHomePage());
+              return const CupertinoPageScaffold(
+                  child: StreamBuilderWidget()); //StreamBuilder is ryans widget
+            });
+          case 2:
+            return CupertinoTabView(builder: (context) {
+              return CupertinoPageScaffold(
+                  child: Map()); //StreamBuilder is ryans widget
             });
           default:
             return CupertinoTabView(builder: (context) {

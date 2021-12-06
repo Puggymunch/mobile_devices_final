@@ -9,7 +9,7 @@ class RecipeApi {
 
     var response = await http.get(uri, headers: {
       "x-rapidapi-host": "yummly2.p.rapidapi.com",
-      "x-rapidapi-key": "36e456bbb0msh85323db4f60a6abp1c3fdfjsn02985f769a6a",
+      "x-rapidapi-key": "4c916849dbmsh5b89e8a5306a879p10e76bjsn545e083eb59c",
       "useQueryString": "true"
     });
 
@@ -29,7 +29,7 @@ class RecipeApi {
 
     var response = await http.get(uri, headers: {
       "x-rapidapi-host": "yummly2.p.rapidapi.com",
-      "x-rapidapi-key": '36e456bbb0msh85323db4f60a6abp1c3fdfjsn02985f769a6a',
+      "x-rapidapi-key": '4c916849dbmsh5b89e8a5306a879p10e76bjsn545e083eb59c',
       "useQueryString": "true"
     });
 
