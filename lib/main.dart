@@ -46,31 +46,47 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        floatingActionButton: FloatingActionButton(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      floatingActionButton:
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+        FloatingActionButton(
           onPressed: () {
             Navigator.pushNamed(context, '/addrecipe');
           },
           tooltip: 'Create your own!',
           child: const Icon(Icons.add),
         ),
-        body: StreamBuilder(
-            stream: recipes.snapshots(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (!snapshot.hasData) {
-                return CircularProgressIndicator();
-              }
-              return ListView.builder(
-                  itemCount: snapshot.data.docs.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    var docData = snapshot.data.docs[index].data();
-                    return ListTile(
-                      title: Text(docData["title"]),
-                      subtitle: Text(docData["ingredients"]),
-                    );
-                  }); // This trailing comma makes auto-formatting nicer for build methods.
-            }));
+        FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              Navigator.pushNamed(
+                context,
+                '/display_stores',
+              );
+            });
+          },
+          tooltip: 'Look for grocery stores near you.',
+          child: const Icon(Icons.location_on),
+        ),
+      ]),
+      body: StreamBuilder(
+          stream: recipes.snapshots(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (!snapshot.hasData) {
+              return CircularProgressIndicator();
+            }
+            return ListView.builder(
+                itemCount: snapshot.data.docs.length,
+                itemBuilder: (BuildContext context, int index) {
+                  var docData = snapshot.data.docs[index].data();
+                  return ListTile(
+                    title: Text(docData["title"]),
+                    subtitle: Text(docData["ingredients"]),
+                  );
+                }); // This trailing comma makes auto-formatting nicer for build methods.
+          }),
+    );
   }
 }

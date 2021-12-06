@@ -31,7 +31,10 @@ class Map extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("placemark name")),
+        appBar: AppBar(
+          title: const Text("Map"),
+          backgroundColor: Colors.blueGrey,
+        ),
         body: FlutterMap(
           options:
               MapOptions(zoom: 14.0, minZoom: 1, maxZoom: 18, center: center),
@@ -51,7 +54,7 @@ class Map extends StatelessWidget {
                     return const Icon(
                       Icons.accessibility_sharp,
                       color: Colors.blueAccent,
-                      size: 20,
+                      size: 30,
                     );
                   }),
               Marker(

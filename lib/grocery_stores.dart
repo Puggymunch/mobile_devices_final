@@ -21,6 +21,7 @@ class GroceryStores extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Grocery Stores Near You"),
+        backgroundColor: Colors.blueGrey,
       ),
       body: ListView(
         children: [
