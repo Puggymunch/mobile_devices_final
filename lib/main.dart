@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'addrecipe.dart';
+import 'map.dart';
+import 'grocery_stores.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +24,8 @@ class MyApp extends StatelessWidget {
       home: const StreamBuilderWidget(title: 'Sample Recipe Home Page'),
       routes: {
         '/addrecipe': (context) => const AddRecipe(),
+        '/display_stores': (context) => GroceryStores(),
+        '/display_map': (context) => Map()
       },
     );
   }
