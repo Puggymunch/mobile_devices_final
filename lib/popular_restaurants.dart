@@ -1,1 +1,0 @@
-//Page will show 5 restaurants in the area and clicking on them will display the map with a marker detailing the information
