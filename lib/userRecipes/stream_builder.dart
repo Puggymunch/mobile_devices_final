@@ -16,6 +16,14 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+            title: Text("My Recipes",
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.amber)),
+            backgroundColor: Colors.transparent,
+            elevation: 0.0),
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 50.0),
           child: FloatingActionButton(

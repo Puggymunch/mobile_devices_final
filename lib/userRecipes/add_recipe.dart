@@ -57,202 +57,204 @@ class _AddRecipeState extends State<AddRecipe> {
     final fileName = image != null ? basename(image!.path) : "No Image Data";
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Create a Recipe!',
-            style: TextStyle(fontSize: 20, color: Colors.black)),
-        backgroundColor: Colors.amber,
-      ),
-      body: ListView(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(
-                width: 25,
-              ),
-              Text("Title:", style: TextStyle(fontSize: 15)),
-              const SizedBox(
-                width: 50,
-              ),
-              Container(
-                  width: 250,
-                  child: TextFormField(
-                      minLines: 1,
-                      maxLines: 20,
-                      controller: titleController,
-                      decoration: InputDecoration(
-                        border: UnderlineInputBorder(),
-                      ))),
-            ],
+        appBar: AppBar(
+          title: Text('Create a Recipe!',
+              style: TextStyle(fontSize: 20, color: Colors.black)),
+          backgroundColor: Colors.amber,
+        ),
+        body: ListView(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  width: 25,
+                ),
+                Text("Title:", style: TextStyle(fontSize: 15)),
+                const SizedBox(
+                  width: 50,
+                ),
+                Container(
+                    width: 250,
+                    child: TextFormField(
+                        minLines: 1,
+                        maxLines: 20,
+                        controller: titleController,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                        ))),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  width: 6,
+                ),
+                Text("Ingredients:", style: TextStyle(fontSize: 15)),
+                const SizedBox(
+                  width: 50,
+                ),
+                Container(
+                    width: 250,
+                    child: TextField(
+                        minLines: 1,
+                        maxLines: 20,
+                        controller: ingredientsController,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                        ))),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text("Instructions:", style: TextStyle(fontSize: 15)),
+                const SizedBox(
+                  width: 50,
+                ),
+                Container(
+                    width: 250,
+                    child: TextField(
+                        minLines: 1,
+                        maxLines: 20,
+                        controller: instructionsController,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                        ))),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  width: 10,
+                ),
+                Text("Prep Time:", style: TextStyle(fontSize: 15)),
+                const SizedBox(
+                  width: 50,
+                ),
+                Container(
+                    width: 250,
+                    child: TextField(
+                        controller: preptimeController,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                        ))),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  width: 7,
+                ),
+                Text("Cook Time:", style: TextStyle(fontSize: 15)),
+                const SizedBox(
+                  width: 50,
+                ),
+                Container(
+                    width: 250,
+                    child: TextField(
+                        controller: cooktimeController,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                        ))),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  width: 8,
+                ),
+                Text("Total Time:", style: TextStyle(fontSize: 15)),
+                const SizedBox(
+                  width: 50,
+                ),
+                Container(
+                    width: 250,
+                    child: TextField(
+                        controller: totaltimeController,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                        ))),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  width: 20,
+                ),
+                Text("Servings:", style: TextStyle(fontSize: 15)),
+                const SizedBox(
+                  width: 50,
+                ),
+                Container(
+                    width: 250,
+                    child: TextField(
+                        controller: servingsController,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                        ))),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  width: 20,
+                ),
+                Text("Photo(s):", style: TextStyle(fontSize: 15)),
+                const SizedBox(
+                  width: 50,
+                ),
+                buildButton(
+                  title: 'Photo from Gallery',
+                  icon: Icons.image_outlined,
+                  onClicked: () {
+                    pickImage(ImageSource.gallery);
+                  },
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 24,
+                  width: 139,
+                ),
+                buildButton(
+                  title: 'Take Photo',
+                  icon: Icons.camera_alt_outlined,
+                  onClicked: () {
+                    pickImage(ImageSource.camera);
+                  },
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(fileName),
+              ],
+            )
+          ],
+        ),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(bottom: 35.0),
+          child: FloatingActionButton(
+            child: Icon(Icons.save),
+            onPressed: () {
+              addRecipe();
+              uploadImage();
+              Navigator.pop(context, true);
+            },
+            backgroundColor: Colors.amber,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(
-                width: 6,
-              ),
-              Text("Ingredients:", style: TextStyle(fontSize: 15)),
-              const SizedBox(
-                width: 50,
-              ),
-              Container(
-                  width: 250,
-                  child: TextField(
-                      minLines: 1,
-                      maxLines: 20,
-                      controller: ingredientsController,
-                      decoration: InputDecoration(
-                        border: UnderlineInputBorder(),
-                      ))),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text("Instructions:", style: TextStyle(fontSize: 15)),
-              const SizedBox(
-                width: 50,
-              ),
-              Container(
-                  width: 250,
-                  child: TextField(
-                      minLines: 1,
-                      maxLines: 20,
-                      controller: instructionsController,
-                      decoration: InputDecoration(
-                        border: UnderlineInputBorder(),
-                      ))),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(
-                width: 10,
-              ),
-              Text("Prep Time:", style: TextStyle(fontSize: 15)),
-              const SizedBox(
-                width: 50,
-              ),
-              Container(
-                  width: 250,
-                  child: TextField(
-                      controller: preptimeController,
-                      decoration: InputDecoration(
-                        border: UnderlineInputBorder(),
-                      ))),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(
-                width: 7,
-              ),
-              Text("Cook Time:", style: TextStyle(fontSize: 15)),
-              const SizedBox(
-                width: 50,
-              ),
-              Container(
-                  width: 250,
-                  child: TextField(
-                      controller: cooktimeController,
-                      decoration: InputDecoration(
-                        border: UnderlineInputBorder(),
-                      ))),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(
-                width: 8,
-              ),
-              Text("Total Time:", style: TextStyle(fontSize: 15)),
-              const SizedBox(
-                width: 50,
-              ),
-              Container(
-                  width: 250,
-                  child: TextField(
-                      controller: totaltimeController,
-                      decoration: InputDecoration(
-                        border: UnderlineInputBorder(),
-                      ))),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(
-                width: 20,
-              ),
-              Text("Servings:", style: TextStyle(fontSize: 15)),
-              const SizedBox(
-                width: 50,
-              ),
-              Container(
-                  width: 250,
-                  child: TextField(
-                      controller: servingsController,
-                      decoration: InputDecoration(
-                        border: UnderlineInputBorder(),
-                      ))),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(
-                width: 20,
-              ),
-              Text("Photo(s):", style: TextStyle(fontSize: 15)),
-              const SizedBox(
-                width: 50,
-              ),
-              buildButton(
-                title: 'Photo from Gallery',
-                icon: Icons.image_outlined,
-                onClicked: () {
-                  pickImage(ImageSource.gallery);
-                },
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 24,
-                width: 139,
-              ),
-              buildButton(
-                title: 'Take Photo',
-                icon: Icons.camera_alt_outlined,
-                onClicked: () {
-                  pickImage(ImageSource.camera);
-                },
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(fileName),
-            ],
-          )
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.save),
-        onPressed: () {
-          addRecipe();
-          uploadImage();
-          Navigator.pop(context, true);
-        },
-        backgroundColor: Colors.amber,
-      ),
-    );
+        ));
   }
 
   Widget buildButton({

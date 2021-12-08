@@ -2,12 +2,10 @@ import 'package:final_proj/recipe.api.dart';
 import 'package:final_proj/starter_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'recipe.dart';
 import 'search_result.dart';
 import 'clicked_recipe.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -123,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 )),
                                       );
                                     },
-                                    icon: Icon(Icons.search)),
+                                    icon: const Icon(Icons.search)),
                                 filled: true,
                                 fillColor: Colors.grey.shade300,
                                 labelText: "Search recipes",

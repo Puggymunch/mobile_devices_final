@@ -125,7 +125,7 @@ class _ClickedRecipeState extends State<ClickedRecipe> {
                             padding: const EdgeInsets.only(right: 240),
                             child: const Text('Description',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.amber,
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
                                 ))),
@@ -140,7 +140,7 @@ class _ClickedRecipeState extends State<ClickedRecipe> {
                             padding: const EdgeInsets.only(right: 240),
                             child: const Text('Ingredients',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.amber,
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
                                 ))),
@@ -155,7 +155,7 @@ class _ClickedRecipeState extends State<ClickedRecipe> {
                             padding: const EdgeInsets.only(right: 260),
                             child: const Text('Directions',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.amber,
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
                                 ))),
@@ -165,6 +165,7 @@ class _ClickedRecipeState extends State<ClickedRecipe> {
                             child: Text(widget.recipe.directions.toString(),
                                 style: const TextStyle(
                                     color: Colors.white, fontSize: 20))),
+                        const SizedBox(height: 100),
                       ],
                     )),
                     IconButton(
